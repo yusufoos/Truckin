@@ -1,4 +1,5 @@
 class OrderItemsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_order_item, only: [:show, :edit, :update, :destroy]
 
   # GET /order_items

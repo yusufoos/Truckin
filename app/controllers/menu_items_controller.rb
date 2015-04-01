@@ -1,4 +1,5 @@
-class MenuItemsController < ApplicationController
+class MenuItemsController < ApplicationController 
+  skip_before_action :verify_authenticity_token
   before_action :set_menu_item, only: [:show, :edit, :update, :destroy]
 
   # GET /menu_items
