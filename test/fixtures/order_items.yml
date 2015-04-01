@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  OrderID: 1
-  menuItemID: 1
   quantity: 1
 
 two:
-  OrderID: 1
-  menuItemID: 1
   quantity: 1

@@ -1,15 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  menuItemID: 1
-  foodTruckID: 1
   name: MyString
   price: 9.99
   description: MyString
 
 two:
-  menuItemID: 1
-  foodTruckID: 1
   name: MyString
   price: 9.99
   description: MyString

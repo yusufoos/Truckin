@@ -1,7 +1,6 @@
 class CreateFoodTrucks < ActiveRecord::Migration
   def change
     create_table :food_trucks do |t|
-      t.integer :foodTruckID
       t.string :merchantUserEmail
       t.string :name
       t.string :foodType

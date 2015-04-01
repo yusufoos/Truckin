@@ -1,1 +1,1 @@
-json.extract! @food_truck, :id, :foodTruckID, :merchantUserEmail, :name, :type, :longitude, :latitude, :created_at, :updated_at
+json.extract! @food_truck, :id, :merchantUserEmail, :name, :foodType, :longitude, :latitude, :created_at, :updated_at
