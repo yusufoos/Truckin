@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :menu_items
+
+  resources :food_trucks
+
+  resources :order_items
+
+  resources :orders
+
   resources :users
 
   root 'welcome#index'

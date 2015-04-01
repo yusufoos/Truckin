@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  foodTruckID: 1
+  merchantUserEmail: MyString
+  name: MyString
+  type: 
+  longitude: 1.5
+  latitude: 1.5
+
+two:
+  foodTruckID: 1
+  merchantUserEmail: MyString
+  name: MyString
+  type: 
+  longitude: 1.5
+  latitude: 1.5
