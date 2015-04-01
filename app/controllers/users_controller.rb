@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  
-  skip_before_action :verify_authenticity_token
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   # GET /users
   # GET /users.json
   def index
@@ -22,7 +21,7 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # POST /
+  # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
