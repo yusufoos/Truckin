@@ -4,7 +4,7 @@ class CreateFoodTrucks < ActiveRecord::Migration
       t.integer :foodTruckID
       t.string :merchantUserEmail
       t.string :name
-      t.string :type
+      t.string :foodType
       t.float :longitude
       t.float :latitude
 
