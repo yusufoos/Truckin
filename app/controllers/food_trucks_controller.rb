@@ -5,7 +5,7 @@ class FoodTrucksController < ApplicationController
   # GET /food_trucks
   # GET /food_trucks.json
   def index
-    @food_trucks = FoodTruck.all
+    @food_trucks = FoodTruck.find_by_sql "SELECT * from food_trucks"
   end
 
   # GET /food_trucks/1

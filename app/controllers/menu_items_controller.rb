@@ -1,5 +1,5 @@
-class MenuItemsController < ApplicationController 
-  skip_before_action :verify_authenticity_token
+class MenuItemsController < ApplicationController
+  skip_before_action :verify_authenticity_token  
   before_action :set_menu_item, only: [:show, :edit, :update, :destroy]
 
   # GET /menu_items
@@ -70,6 +70,6 @@ class MenuItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_item_params
-      params.require(:menu_item).permit(:name, :price, :description)
+      params.require(:menu_item).permit(:foodTruckID, :name, :price, :description)
     end
 end
