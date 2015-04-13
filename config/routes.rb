@@ -1,16 +1,24 @@
 Rails.application.routes.draw do
   resources :menu_items
 
-  resources :food_trucks
+  resources :food_trucks do
+    resources :menu_items
+  end
 
   resources :order_items
 
-  resources :orders
+  resources :orders do
+    resources :order_items
+  end
 
-  resources :users
+  resources :users do
+    resources :food_trucks
+    resources :orders
+  end
 
   root 'welcome#index'
 
+  get 'users/:email' => 'users#shownByEmail'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

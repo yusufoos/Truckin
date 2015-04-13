@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402150517) do
+ActiveRecord::Schema.define(version: 20150411214707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,35 +19,45 @@ ActiveRecord::Schema.define(version: 20150402150517) do
   create_table "food_trucks", force: :cascade do |t|
     t.string   "merchantUserEmail"
     t.string   "name"
-    t.string   "foodType"
     t.float    "longitude"
     t.float    "latitude"
+    t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
 
+  add_index "food_trucks", ["user_id"], name: "index_food_trucks_on_user_id", using: :btree
+
   create_table "menu_items", force: :cascade do |t|
-    t.integer  "foodTruckID"
     t.string   "name"
     t.decimal  "price"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "food_truck_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
+
+  add_index "menu_items", ["food_truck_id"], name: "index_menu_items_on_food_truck_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
-    t.integer  "orderID"
-    t.integer  "menuItemID"
     t.integer  "quantity"
+    t.integer  "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
+    t.float    "price"
   end
 
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
-    t.integer  "customerUserEmail"
+    t.string   "customerUserEmail"
+    t.integer  "user_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
@@ -57,4 +67,8 @@ ActiveRecord::Schema.define(version: 20150402150517) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "food_trucks", "users"
+  add_foreign_key "menu_items", "food_trucks"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "users"
 end

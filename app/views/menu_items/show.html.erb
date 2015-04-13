@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Foodtruckid:</strong>
-  <%= @menu_item.foodTruckID %>
-</p>
-
-<p>
   <strong>Name:</strong>
   <%= @menu_item.name %>
 </p>
@@ -18,6 +13,11 @@
 <p>
   <strong>Description:</strong>
   <%= @menu_item.description %>
+</p>
+
+<p>
+  <strong>Food truck:</strong>
+  <%= @menu_item.food_truck %>
 </p>
 
 <%= link_to 'Edit', edit_menu_item_path(@menu_item) %> |

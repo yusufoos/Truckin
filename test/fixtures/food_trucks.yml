@@ -3,13 +3,13 @@
 one:
   merchantUserEmail: MyString
   name: MyString
-  foodType: MyString
   longitude: 1.5
   latitude: 1.5
+  user_id: 
 
 two:
   merchantUserEmail: MyString
   name: MyString
-  foodType: MyString
   longitude: 1.5
   latitude: 1.5
+  user_id: 

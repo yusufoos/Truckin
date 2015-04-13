@@ -8,10 +8,18 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def shownByEmail
+    if(params.has_key?(:email))
+      @user = User.find_by_email(params[:email])
+      respond_to do |format|
+        format.json { render :show, status: :created, location: @user }   
+      end
+    end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
-        #@user = User.find_by_email(user_params[:email])
   end
 
   # GET /users/new
@@ -26,17 +34,42 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+    @user = User.find_by_email(user_params[:email])
+
+    if(user_params.has_key?(:isSignup))
+
+      if(!@user.nil?)
+        render json: {
+          error: "User already exists",
+          status: 400
+        }, status: 400
+        return
+      end
+
+      @user = User.new(user_params.except(:isSignup))
+
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to @user, notice: 'User was successfully created.' }
+          format.json { render :show, status: :created, location: @user }
+        else
+          format.html { render :new }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      if(!@user.nil? && @user.password == user_params[:password])
+        render json: @user
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render json: {
+          error: "No such user",
+          status: 400
+        }, status: 400
       end
     end
+
+
   end
 
   # PATCH/PUT /users/1
@@ -71,6 +104,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :isMerchant)
+      params.require(:user).permit(:email, :password, :isMerchant, :isSignup)
     end
 end

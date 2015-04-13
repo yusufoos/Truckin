@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :foodTruckID %><br>
-    <%= f.number_field :foodTruckID %>
-  </div>
-  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
@@ -26,6 +22,10 @@
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :food_truck_id %><br>
+    <%= f.text_field :food_truck_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -18,7 +18,7 @@ class FoodTrucksControllerTest < ActionController::TestCase
 
   test "should create food_truck" do
     assert_difference('FoodTruck.count') do
-      post :create, food_truck: { foodType: @food_truck.foodType, latitude: @food_truck.latitude, longitude: @food_truck.longitude, merchantUserEmail: @food_truck.merchantUserEmail, name: @food_truck.name }
+      post :create, food_truck: { latitude: @food_truck.latitude, longitude: @food_truck.longitude, merchantUserEmail: @food_truck.merchantUserEmail, name: @food_truck.name, user_id: @food_truck.user_id }
     end
 
     assert_redirected_to food_truck_path(assigns(:food_truck))
@@ -35,7 +35,7 @@ class FoodTrucksControllerTest < ActionController::TestCase
   end
 
   test "should update food_truck" do
-    patch :update, id: @food_truck, food_truck: { foodType: @food_truck.foodType, latitude: @food_truck.latitude, longitude: @food_truck.longitude, merchantUserEmail: @food_truck.merchantUserEmail, name: @food_truck.name }
+    patch :update, id: @food_truck, food_truck: { latitude: @food_truck.latitude, longitude: @food_truck.longitude, merchantUserEmail: @food_truck.merchantUserEmail, name: @food_truck.name, user_id: @food_truck.user_id }
     assert_redirected_to food_truck_path(assigns(:food_truck))
   end
 

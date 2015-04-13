@@ -1,11 +1,11 @@
 class FoodTrucksController < ApplicationController
-  skip_before_action :verify_authenticity_token  
+  skip_before_action :verify_authenticity_token
   before_action :set_food_truck, only: [:show, :edit, :update, :destroy]
 
   # GET /food_trucks
   # GET /food_trucks.json
   def index
-    @food_trucks = FoodTruck.find_by_sql "SELECT * from food_trucks"
+    @food_trucks = FoodTruck.all
   end
 
   # GET /food_trucks/1
@@ -70,6 +70,6 @@ class FoodTrucksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_truck_params
-      params.require(:food_truck).permit(:merchantUserEmail, :name, :foodType, :longitude, :latitude)
+      params.require(:food_truck).permit(:merchantUserEmail, :name, :longitude, :latitude, :user_id)
     end
 end

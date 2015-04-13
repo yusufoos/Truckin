@@ -5,9 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Orderid</th>
-      <th>Menuitemid</th>
       <th>Quantity</th>
+      <th>Order</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +14,8 @@
   <tbody>
     <% @order_items.each do |order_item| %>
       <tr>
-        <td><%= order_item.orderID %></td>
-        <td><%= order_item.menuItemID %></td>
         <td><%= order_item.quantity %></td>
+        <td><%= order_item.order %></td>
         <td><%= link_to 'Show', order_item %></td>
         <td><%= link_to 'Edit', edit_order_item_path(order_item) %></td>
         <td><%= link_to 'Destroy', order_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
