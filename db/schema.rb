@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411214707) do
+ActiveRecord::Schema.define(version: 20150415204040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150411214707) do
   create_table "food_trucks", force: :cascade do |t|
     t.string   "merchantUserEmail"
     t.string   "name"
+    t.string   "type"
     t.float    "longitude"
     t.float    "latitude"
     t.integer  "user_id"
@@ -40,12 +41,12 @@ ActiveRecord::Schema.define(version: 20150411214707) do
   add_index "menu_items", ["food_truck_id"], name: "index_menu_items_on_food_truck_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
+    t.string   "name"
     t.integer  "quantity"
+    t.decimal  "price"
     t.integer  "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "name"
-    t.float    "price"
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
