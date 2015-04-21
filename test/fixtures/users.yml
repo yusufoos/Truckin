@@ -4,8 +4,10 @@ one:
   email: MyString
   password: MyString
   isMerchant: false
+  token: MyString
 
 two:
   email: MyString
   password: MyString
   isMerchant: false
+  token: MyString

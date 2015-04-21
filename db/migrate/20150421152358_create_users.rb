@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :password
       t.boolean :isMerchant
+      t.string :token
 
       t.timestamps null: false
     end

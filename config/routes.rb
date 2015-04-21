@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  
   resources :menu_items
 
   resources :food_trucks do
     resources :menu_items
+    resources :orders
   end
 
   resources :order_items
@@ -19,6 +21,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'users/:email' => 'users#shownByEmail'
+
+  get "welcome/index"
+
+  get '/send_notification/:token', to: 'welcome#send_notification'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

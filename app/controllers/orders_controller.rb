@@ -1,16 +1,23 @@
 class OrdersController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token  
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    if(params.has_key?(:user_id))
+      @orders = Order.all.where("user_id = ?",params[:user_id])
+    elsif
+      @orders = Order.all.where("food_truck_id = ?",params[:food_truck_id])      
+    else
+      @orders = Order.all
+    end
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+
   end
 
   # GET /orders/new
@@ -22,18 +29,39 @@ class OrdersController < ApplicationController
   def edit
   end
 
+  def send_notification(token,truckName)
+    logger.info "Device token registrato: " + token
+    APNS.send_notification(token, 'Your order from ' + truckName + ' is ready!')
+    redirect_to home_index_path, :notice => "Notification sent to device #{token}"
+  end
+
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    
+    if(order_params.has_key?(:orderId))
+      @order = Order.find_by_id(order_params[:orderId])
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
+      if(!@order.nil?)
+        @user = User.find_by_id(@order.user_id)
+        @food_truck = FoodTruck.find_by_id(@order.food_truck_id)
+        send_notification(@user.token, @food_truck.name)
       else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        render json: {
+          error: "No such order",
+          status: 400
+        }, status: 400
+      end
+    else
+      @order = Order.new(order_params)
+      respond_to do |format|
+        if @order.save
+          format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          format.json { render :show, status: :created, location: @order }
+        else
+          format.html { render :new }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -70,6 +98,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:customerUserEmail, :user_id)
+      params.require(:order).permit(:user_id, :food_truck_id, :orderId)
     end
 end

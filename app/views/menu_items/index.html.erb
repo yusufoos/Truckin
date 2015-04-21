@@ -9,6 +9,7 @@
       <th>Price</th>
       <th>Description</th>
       <th>Food truck</th>
+      <th>Id</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +20,8 @@
         <td><%= menu_item.name %></td>
         <td><%= menu_item.price %></td>
         <td><%= menu_item.description %></td>
-        <td><%= menu_item.food_truck %></td>
+        <td><%= menu_item.food_truck.id %></td>
+        <td><%= menu_item.id %></td>       
         <td><%= link_to 'Show', menu_item %></td>
         <td><%= link_to 'Edit', edit_menu_item_path(menu_item) %></td>
         <td><%= link_to 'Destroy', menu_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>

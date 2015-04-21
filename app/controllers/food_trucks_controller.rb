@@ -5,7 +5,11 @@ class FoodTrucksController < ApplicationController
   # GET /food_trucks
   # GET /food_trucks.json
   def index
-    @food_trucks = FoodTruck.all
+    if(params.has_key?(:user_id))
+      @food_trucks = FoodTruck.all.where("user_id = ?",params[:user_id])
+    else
+      @food_trucks = FoodTruck.all
+    end
   end
 
   # GET /food_trucks/1

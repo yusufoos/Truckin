@@ -22,7 +22,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @food_truck.user %>
+  <%= @food_truck.user.id %>
+</p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @food_truck.id %>
 </p>
 
 <%= link_to 'Edit', edit_food_truck_path(@food_truck) %> |

@@ -5,7 +5,11 @@ class OrderItemsController < ApplicationController
   # GET /order_items
   # GET /order_items.json
   def index
-    @order_items = OrderItem.all
+    if(params.has_key?(:user_id))
+      @order_items = OrderItem.all.where("order_id = ?",params[:order_id])
+    else
+      @order_items = OrderItem.all    
+    end  
   end
 
   # GET /order_items/1

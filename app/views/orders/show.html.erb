@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Customeruseremail:</strong>
-  <%= @order.customerUserEmail %>
+  <strong>User:</strong>
+  <%= @order.user.id %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @order.user %>
+  <strong>Food truck:</strong>
+  <%= @order.food_truck.id %>
+</p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @order.id %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

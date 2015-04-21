@@ -47,5 +47,7 @@ end
 
 gem 'rails_12factor', group: :production
 
+gem 'apns'
+
 ruby "2.2.0"
 

@@ -17,7 +17,12 @@
 
 <p>
   <strong>Food truck:</strong>
-  <%= @menu_item.food_truck %>
+  <%= @menu_item.food_truck.id %>
+</p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @menu_item.id %>
 </p>
 
 <%= link_to 'Edit', edit_menu_item_path(@menu_item) %> |

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
-    has_many :food_trucks, :dependent => :delete_all
-    has_many :orders, :dependent => :delete_all
+  validates_uniqueness_of :token
+  has_many :orders,  :dependent => :delete_all
+  has_many :food_trucks, :dependent => :delete_all
 end
