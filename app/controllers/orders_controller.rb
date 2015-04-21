@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   def index
     if(params.has_key?(:user_id))
       @orders = Order.all.where("user_id = ?",params[:user_id])
-    elsif
+    elsif(params.has_key?(:food_truck_id))
       @orders = Order.all.where("food_truck_id = ?",params[:food_truck_id])      
     else
       @orders = Order.all

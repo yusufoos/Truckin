@@ -14,14 +14,12 @@ Rails.application.routes.draw do
   end
 
   resources :users do
+    get 'getOrders', :action => :getOrders
     resources :food_trucks
     resources :orders
   end
 
   root 'welcome#index'
-
-  get 'users/:email' => 'users#shownByEmail'
-
   get "welcome/index"
 
   get '/send_notification/:token', to: 'welcome#send_notification'

@@ -8,14 +8,26 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def shownByEmail
-    if(params.has_key?(:email))
-      @user = User.find_by_email(params[:email])
-      respond_to do |format|
-        format.json { render :show, status: :created, location: @user }   
-      end
-    end
+  def getOrders
+        @user = User.find_by_id(params[:user_id])
+        @food_trucks = FoodTruck.all.where("user_id = ?",@user.id)
+        @orders = []
+        @food_trucks.each do |truck|
+          @orders.push(Order.all.where("food_truck_id = ?", truck.id))      
+        end
+        respond_to do |format| 
+          format.json{render :json => @orders}
+        end
   end
+
+  # def shownByEmail
+  #   if(params.has_key?(:email))
+  #     @user = User.find_by_email(params[:email])
+  #     respond_to do |format|
+  #       format.json { render :show, status: :created, location: @user }   
+  #     end
+  #   end
+  # end
 
   # GET /users/1
   # GET /users/1.json
