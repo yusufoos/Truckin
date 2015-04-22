@@ -12,8 +12,12 @@ class UsersController < ApplicationController
         @user = User.find_by_id(params[:user_id])
         @food_trucks = FoodTruck.all.where("user_id = ?",@user.id)
         @orders = []
+        @ordersToAdd
         @food_trucks.each do |truck|
-          @orders.push(Order.all.where("food_truck_id = ?", truck.id))      
+          @ordersToAdd = Order.all.where("food_truck_id = ?", truck.id)
+          if @ordersToAdd.count > 0
+            @orders = @orders | @ordersToAdd      
+          end
         end
         respond_to do |format| 
           format.json{render :json => @orders}
