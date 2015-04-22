@@ -3,7 +3,7 @@ class CreateFoodTrucks < ActiveRecord::Migration
     create_table :food_trucks do |t|
       t.string :merchantUserEmail
       t.string :name
-      t.string :type
+      t.string :foodType
       t.float :longitude
       t.float :latitude
       t.references :user, index: true
