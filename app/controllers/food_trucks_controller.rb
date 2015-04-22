@@ -10,11 +10,23 @@ class FoodTrucksController < ApplicationController
     else
       @food_trucks = FoodTruck.all
     end
+
+    respond_to do |format|
+        #format.html { redirect_to @food_truck, notice: 'Food truck was successfully created.' }
+        format.json { render json: @food_trucks}
+    end
+
   end
 
   # GET /food_trucks/1
   # GET /food_trucks/1.json
   def show
+    respond_to do |format|
+        #format.html { redirect_to @food_truck, notice: 'Food truck was successfully created.' }
+        format.json { render json: @food_truck}
+    end
+
+
   end
 
   # GET /food_trucks/new
