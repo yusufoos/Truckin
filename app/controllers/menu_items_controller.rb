@@ -5,7 +5,7 @@ class MenuItemsController < ApplicationController
   # GET /menu_items
   # GET /menu_items.json
   def index
-    if(params.has_key?(:user_id))
+    if(params.has_key?(:food_truck_id))
       @menu_items = MenuItem.all.where("food_truck_id = ?",params[:food_truck_id])
     else
       @menu_items = MenuItem.all

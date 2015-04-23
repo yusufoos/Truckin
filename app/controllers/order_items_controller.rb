@@ -5,7 +5,7 @@ class OrderItemsController < ApplicationController
   # GET /order_items
   # GET /order_items.json
   def index
-    if(params.has_key?(:user_id))
+    if(params.has_key?(:order_id))
       @order_items = OrderItem.all.where("order_id = ?",params[:order_id])
     else
       @order_items = OrderItem.all    
