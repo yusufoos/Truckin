@@ -32,7 +32,6 @@ class OrdersController < ApplicationController
   def send_notification(token,truckName)
     logger.info "Device token registrato: " + token
     APNS.send_notification(token, 'Your order from ' + truckName + ' is ready!')
-    redirect_to home_index_path, :notice => "Notification sent to device #{token}"
   end
 
   # POST /orders
