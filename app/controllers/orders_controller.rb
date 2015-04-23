@@ -51,6 +51,10 @@ class OrdersController < ApplicationController
           status: 400
         }, status: 400
       end
+      respond_to do |format|
+        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.json { render :show, status: :created, location: @order }
+      end
     else
       @order = Order.new(order_params)
       respond_to do |format|
